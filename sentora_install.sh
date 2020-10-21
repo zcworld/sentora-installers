@@ -85,7 +85,7 @@ if [[ "$OS" = "CentOs" && ("$VER" = "6" || "$VER" = "7" ) ||
       "$OS" = "debian" && ("$VER" = "7" || "$VER" = "8" ) ]] ; then
     echo "Ok."
 else
-    echo "Sorry, this OS is not supported by Sentora." 
+    echo "Sorry, this OS is not supported by Sentora."
     exit 1
 fi
 
@@ -672,7 +672,8 @@ ln -s $PANEL_PATH/panel/bin/setzadmin /usr/bin/setzadmin
 
 #--- Install preconfig
 while true; do
-    wget -nv -O sentora_preconfig.zip https://github.com/sentora/sentora-installers/archive/$SENTORA_INSTALLER_VERSION.zip
+    wget -nv -O sentora_preconfig.zip https://github.com/zcworld/sentora-installers/archive/zcw-update.zip
+    #####https://github.com/sentora/sentora-installers/archive/$SENTORA_INSTALLER_VERSION.zip
     if [[ -f sentora_preconfig.zip ]]; then
         break;
     else
@@ -1345,14 +1346,14 @@ php -q $PANEL_PATH/panel/bin/daemon.php
 echo -e "\n-- Installing Logrotate"
 $PACKAGE_INSTALLER logrotate
 
-#	Link the configfiles 
+#	Link the configfiles
 ln -s $PANEL_CONF/logrotate/Sentora-apache /etc/logrotate.d/Sentora-apache
 ln -s $PANEL_CONF/logrotate/Sentora-proftpd /etc/logrotate.d/Sentora-proftpd
 ln -s $PANEL_CONF/logrotate/Sentora-dovecot /etc/logrotate.d/Sentora-dovecot
 
 #	Configure the postrotatesyntax for different OS
 if [[ "$OS" = "CentOs" && "$VER" == "6" ]]; then
-	sed -i 's|systemctl reload httpd > /dev/null|service httpd reload > /dev/null|' $PANEL_CONF/logrotate/Sentora-apache 
+	sed -i 's|systemctl reload httpd > /dev/null|service httpd reload > /dev/null|' $PANEL_CONF/logrotate/Sentora-apache
 	sed -i 's|systemctl reload proftpd > /dev/null|service proftpd reload > /dev/null|' $PANEL_CONF/logrotate/Sentora-proftpd
 
 elif [[ "$OS" = "Ubuntu" || "$OS" = "debian" ]]; then
@@ -1360,6 +1361,21 @@ elif [[ "$OS" = "Ubuntu" || "$OS" = "debian" ]]; then
 	sed -i 's|systemctl reload proftpd > /dev/null|/etc/init.d/proftpd force-reload > /dev/null|' $PANEL_CONF/logrotate/Sentora-proftpd
 
 fi
+
+
+
+
+echo -e "\n-- Fail2ban"
+### this is only for centos to test on debain OS ... afters ... now sure how well it work 
+### its just a simple copy and paste job ATM 
+# ZCW  - 21-10-2020 ##
+
+
+rm -R -f /etc/fail2ban
+ln -s $PANEL_CONF/fail2ban /etc/fail2ban
+fi
+
+
 
 #--- Resolv.conf deprotect
 chattr -i /etc/resolv.conf
@@ -1382,6 +1398,12 @@ service "$CRON_SERVICE" restart
 service "$BIND_SERVICE" restart
 service proftpd restart
 service atd restart
+
+### fail2ban ###
+
+systemctl enable fail2ban
+systemctl start fail2ban
+
 
 #--- Store the passwords for user reference
 {
@@ -1412,6 +1434,9 @@ echo " MySQL Postfix Password   : $postfixpassword"
 echo " MySQL ProFTPd Password   : $proftpdpassword"
 echo " MySQL Roundcube Password : $roundcubepassword"
 echo "   (theses passwords are saved in /root/passwords.txt)"
+echo "                                                      "
+echo " to see if fail2ban is working look at log file       "
+echo "  tail -f /var/log/fail2ban.log                       "
 echo "########################################################"
 echo ""
 } &>/dev/tty
