@@ -689,7 +689,8 @@ while true; do
 done
 
 unzip -oq sentora_preconfig.zip
-/bin/cp -rf sentora-installers-$SENTORA_INSTALLER_VERSION/preconf/* $PANEL_CONF
+#/bin/cp -rf sentora-installers-$SENTORA_INSTALLER_VERSION/preconf/* $PANEL_CONF
+/bin/cp -rf sentora-installers-zcw-update /preconf/* $PANEL_CONF
 rm sentora_preconfig*
 rm -rf sentora-*
 
@@ -939,7 +940,7 @@ if [[ "$OS" = "CentOs" ]]; then
 	    sed -i "s|LoadModule dav_module modules|#LoadModule dav_module modules|" "$HTTP_CONF_PATH"
 	    sed -i "s|LoadModule dav_fs_module modules|#LoadModule dav_fs_module modules|" "$HTTP_CONF_PATH"
 	    sed -i "s|LoadModule proxy_ajp_module modules|#LoadModule proxy_ajp_module modules|" "$HTTP_CONF_PATH"
-    
+
     fi     
 elif [[ "$OS" = "Ubuntu" || "$OS" = "debian" ]]; then
     $PACKAGE_INSTALLER libapache2-mod-bw
@@ -1340,7 +1341,7 @@ php -q $PANEL_PATH/panel/bin/daemon.php
 
 #--- Firewall ?
 
-#--- Fail2ban
+
 
 #--- Logrotate
 #  Download and install logrotate
