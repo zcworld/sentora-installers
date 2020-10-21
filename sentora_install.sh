@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+
+###                                          ####
+###   ZcWOrld updates / mods                 ####
+###   testing changesd / updates             ####
+###                                          ####
+###   Fail2ban to be installed               ####
+###        Next to do is add config for      ####
+###     SSH / sql / Mail server              ####
+###                                          ####
+
 # Official Sentora Automated Installation Script
 # =============================================
 #
