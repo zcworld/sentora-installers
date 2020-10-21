@@ -140,7 +140,7 @@ elif [[ "$OS" = "Ubuntu" || "$OS" = "debian" ]]; then
     inst() {
        dpkg -l "$1" 2> /dev/null | grep '^ii' &> /dev/null
     }
-    
+
     DB_PCKG="mysql-server"
     HTTP_PCKG="apache2"
     PHP_PCKG="apache2-mod-php5"
@@ -375,6 +375,7 @@ if [[ "$OS" = "CentOs" ]]; then
      wget "$EPEL_BASE_URL/$EPEL_FILE"
   fi
   $PACKAGE_INSTALLER -y install epel-release*.rpm
+  yum install epel-release -y 
   rm "$EPEL_FILE"
     
     #To fix some problems of compatibility use of mirror centos.org to all users
