@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-
+### R11##
 ###                                          ####
 ###   ZcWOrld updates / mods                 ####
 ###   testing changesd / updates             ####
@@ -47,7 +47,8 @@
 # 1.0.3 - example stable tag
 ##
 SENTORA_INSTALLER_VERSION="zcw-update"
-SENTORA_CORE_VERSION="1.0.1"
+SENTORA_CORE_VERSION="1.0.0"
+SENTORA_PRECONF_VERSION="zcw-update"
 
 PANEL_PATH="/etc/sentora"
 PANEL_DATA="/var/sentora"
@@ -673,7 +674,7 @@ ln -s $PANEL_PATH/panel/bin/setzadmin /usr/bin/setzadmin
 
 #--- Install preconfig
 while true; do
-    wget -nv -O sentora_preconfig.zip https://github.com/zcworld/sentora-installers/archive/zcw-update.zip
+    wget -nv -O sentora_preconfig.zip https://github.com/zcworld/sentora-installers/archive/archive/zcw-update.zip
     #####https://github.com/sentora/sentora-installers/archive/$SENTORA_INSTALLER_VERSION.zip
     if [[ -f sentora_preconfig.zip ]]; then
         break;
