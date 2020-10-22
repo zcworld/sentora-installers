@@ -306,7 +306,7 @@ if [[ "$PANEL_FQDN" == "" ]] ; then
             echo "  Sentora will not work with this IP..."
                 confirm="true"
         fi
-      
+
         echo ""
         # if any warning, ask confirmation to continue or propose to change
         if [[ "$confirm" != "" ]] ; then
@@ -747,7 +747,7 @@ fi
 echo -e "\n-- Installing MySQL"
 $PACKAGE_INSTALLER "$DB_PCKG"
 if [[ "$OS" = "CentOs" ]]; then
-    $PACKAGE_INSTALLER "DB_PCKG-devel" "$DB_PCKG-server" 
+    $PACKAGE_INSTALLER "DB_PCKG-devel" "$DB_PCKG-server"
     MY_CNF_PATH="/etc/my.cnf"
     if  [[ "$VER" = "7" ]]; then
         DB_SERVICE="mariadb"
@@ -1086,7 +1086,7 @@ if [[ "$OS" = "CentOs" || "$OS" = "debian" || ( "$OS" = "Ubuntu" && "$VER" = "14
     make install 
     cd ..
     rm -rf suhosin-$SUHOSIN_VERSION
-    if [[ "$OS" = "CentOs" ]]; then 
+    if [[ "$OS" = "CentOs" ]]; then
         echo 'extension=suhosin.so' > $PHP_EXT_PATH/suhosin.ini
     elif [[ "$OS" = "Ubuntu" || "$OS" = "debian" ]]; then
         sed -i 'N;/default extension directory./a\extension=suhosin.so' $PHP_INI_PATH
@@ -1375,7 +1375,7 @@ echo -e "\n-- Fail2ban"
 
 rm -R -f /etc/fail2ban
 ln -s $PANEL_CONF/fail2ban /etc/fail2ban
-fi
+
 
 
 
