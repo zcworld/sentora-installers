@@ -674,7 +674,7 @@ ln -s $PANEL_PATH/panel/bin/setzadmin /usr/bin/setzadmin
 
 #--- Install preconfig
 while true; do
-    wget -nv -O sentora_preconfig.zip https://github.com/zcworld/sentora-installers/archive/archive/zcw-update.zip
+    wget -nv -O sentora_preconfig.zip https://github.com/zcworld/sentora-installers/archive/$SENTORA_INSTALLER_VERSION.zip
     #####https://github.com/sentora/sentora-installers/archive/$SENTORA_INSTALLER_VERSION.zip
     if [[ -f sentora_preconfig.zip ]]; then
         break;
