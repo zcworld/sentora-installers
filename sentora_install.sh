@@ -35,7 +35,7 @@
 # Contributions from:
 #
 #   Pascal Peyremorte (ppeyremorte@sentora.org)
-#   Mehdi Blagui 
+#   Mehdi Blagui
 #   Kevin Andrews (kevin@zvps.uk)
 #
 #   and all those who participated to this and to previous installers.
@@ -46,7 +46,7 @@
 # master - latest unstable
 # 1.0.3 - example stable tag
 ##
-SENTORA_INSTALLER_VERSION="master"
+SENTORA_INSTALLER_VERSION="zcw-update"
 SENTORA_CORE_VERSION="1.0.1"
 
 PANEL_PATH="/etc/sentora"
