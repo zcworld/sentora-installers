@@ -689,8 +689,7 @@ while true; do
 done
 
 unzip -oq sentora_preconfig.zip
-#/bin/cp -rf sentora-installers-$SENTORA_INSTALLER_VERSION/preconf/* $PANEL_CONF
-/bin/cp -rf sentora-installers-zcw-update /preconf/* $PANEL_CONF
+/bin/cp -rf sentora-installers-$SENTORA_INSTALLER_VERSION/preconf/* $PANEL_CONF
 rm sentora_preconfig*
 rm -rf sentora-*
 
