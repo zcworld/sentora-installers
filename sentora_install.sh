@@ -57,7 +57,7 @@ ARCH=$(uname -m)
 echo "Detected : $OS  $VER  $ARCH"
 
 if [[ "$OS" = "CentOs" && ("$VER" = "6" || "$VER" = "7" ) || 
-      "$OS" = "Ubuntu" && ("$VER" = "16.04" || "$VER" = "17.10" ) ]] ; then 
+      "$OS" = "Ubuntu" && ("$VER" = "16.04" || "$VER" = "17.10"|| "$VER" = "20.04" ) ]] ; then 
     echo "Ok."
 else
     echo "Sorry, this OS is not supported by Sentora." 
