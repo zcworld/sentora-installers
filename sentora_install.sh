@@ -57,7 +57,7 @@ ARCH=$(uname -m)
 echo "Detected : $OS  $VER  $ARCH"
 
 if [[ "$OS" = "CentOs" && ("$VER" = "6" || "$VER" = "7" ) || 
-      "$OS" = "Ubuntu" && ("$VER" = "16.04" || "$VER" = "17.10"|| "$VER" = "18.04" ) ]] ; then 
+      "$OS" = "Ubuntu" && ("$VER" = "16.04" || "$VER" = "17.10"|| "$VER" = "18.04" ) ]] ; then
     echo "Ok."
 else
     echo "Sorry, this OS is not supported by Sentora." 
@@ -334,7 +334,7 @@ if [[ "$OS" = "CentOs" ]]; then
     if  [[ "$VER" = "7" ]]; then
         EPEL_FILE=$(wget -q -O- "$EPEL_BASE_URL/e/" | grep -oP '(?<=href=")epel-release.*(?=">)')
         wget "$EPEL_BASE_URL/e/$EPEL_FILE"
-    else 
+    else
         EPEL_FILE=$(wget -q -O- "$EPEL_BASE_URL/" | grep -oP '(?<=href=")epel-release.*(?=">)')
         wget "$EPEL_BASE_URL/$EPEL_FILE"
     fi
@@ -418,7 +418,7 @@ deb-src http://archive.ubuntu.com/ubuntu/ $(lsb_release -sc) main restricted
 deb-src http://archive.ubuntu.com/ubuntu/ $(lsb_release -sc)-updates main restricted
 deb-src http://security.ubuntu.com/ubuntu $(lsb_release -sc)-security main restricted
 
-#Depots Universe Multiverse 
+#Depots Universe Multiverse
 deb http://archive.ubuntu.com/ubuntu/ $(lsb_release -sc) universe multiverse
 deb http://security.ubuntu.com/ubuntu $(lsb_release -sc)-security universe multiverse
 deb http://archive.ubuntu.com/ubuntu/ $(lsb_release -sc)-updates universe multiverse
@@ -474,7 +474,7 @@ while true; do
             [Rr]* ) continue;;
             [Qq]* ) exit 3;;
         esac
-    fi 
+    fi
 done
 mkdir -p $PANEL_PATH
 chown -R root:root $PANEL_PATH
@@ -853,7 +853,7 @@ if [[ "$OS" = "CentOs" ]]; then
     PHP_INI_PATH="/etc/php.ini"
     PHP_EXT_PATH="/etc/php.d"
 elif [[ "$OS" = "Ubuntu" ]]; then
-    $PACKAGE_INSTALLER libapache2-mod-php7.2 php7.2-common php7.2-cli php7.2-mysql php7.2-gd php7.2-mcrypt php7.2-curl php-pear php7.2-imap php7.2-xmlrpc php7.2-xsl php7.2-intl
+    $PACKAGE_INSTALLER libapache2-mod-php7.2 php7.2 php7.2-common php7.2-cli php7.2-mysql php7.2-gd php7.2-mcrypt php7.2-curl php-pear php7.2-imap php7.2-xmlrpc php7.2-xsl php7.2-intl
     if [ "$VER" = "14.04" ]; then
         php7.2enmod mcrypt  # missing in the package for Ubuntu 14!
     else
