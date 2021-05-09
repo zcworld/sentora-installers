@@ -853,11 +853,12 @@ if [[ "$OS" = "CentOs" ]]; then
     PHP_INI_PATH="/etc/php.ini"
     PHP_EXT_PATH="/etc/php.d"
 elif [[ "$OS" = "Ubuntu" ]]; then
-    $PACKAGE_INSTALLER libapache2-mod-php7.2 php7.2 php7.2-common php7.2-cli php7.2-mysql php7.2-gd php7.2-mcrypt php7.2-curl php-pear php7.2-imap php7.2-xmlrpc php7.2-xsl php7.2-intl
+    $PACKAGE_INSTALLER libapache2-mod-php7.2 php7.2 php7.2-common php7.2-cli php7.2-mysql php7.2-gd  php7.2-curl php-pear php7.2-imap php7.2-xmlrpc php7.2-xsl php7.2-intl
+## cant find php7.2-mcrypt
     if [ "$VER" = "14.04" ]; then
         php7.2enmod mcrypt  # missing in the package for Ubuntu 14!
     else
-        $PACKAGE_INSTALLER php7.2-suhosin
+       # $PACKAGE_INSTALLER php7.2-suhosin
     fi
     PHP_INI_PATH="/etc/php7.2/apache2/php.ini"
 fi
