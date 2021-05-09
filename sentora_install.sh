@@ -102,7 +102,7 @@ if [[ "$OS" = "CentOs" ]] ; then
 
     if  [[ "$VER" = "7" ]]; then
         DB_PCKG="mariadb" &&  echo "DB server will be mariaDB"
-    else 
+    else
         DB_PCKG="mysql" && echo "DB server will be mySQL"
     fi
     HTTP_PCKG="httpd"
@@ -118,7 +118,7 @@ elif [[ "$OS" = "Ubuntu" ]]; then
     
     DB_PCKG="mysql-server"
     HTTP_PCKG="apache2"
-    PHP_PCKG="apache2-mod-php5"
+    PHP_PCKG="apache2-mod-php7.2"
     BIND_PCKG="bind9"
 fi
   
@@ -853,13 +853,13 @@ if [[ "$OS" = "CentOs" ]]; then
     PHP_INI_PATH="/etc/php.ini"
     PHP_EXT_PATH="/etc/php.d"
 elif [[ "$OS" = "Ubuntu" ]]; then
-    $PACKAGE_INSTALLER libapache2-mod-php5 php5-common php5-cli php5-mysql php5-gd php5-mcrypt php5-curl php-pear php5-imap php5-xmlrpc php5-xsl php5-intl
+    $PACKAGE_INSTALLER libapache2-mod-php7.2 php7.2-common php7.2-cli php7.2-mysql php7.2-gd php7.2-mcrypt php7.2-curl php-pear php7.2-imap php7.2-xmlrpc php7.2-xsl php7.2-intl
     if [ "$VER" = "14.04" ]; then
-        php5enmod mcrypt  # missing in the package for Ubuntu 14!
+        php7.2enmod mcrypt  # missing in the package for Ubuntu 14!
     else
-        $PACKAGE_INSTALLER php5-suhosin
+        $PACKAGE_INSTALLER php7.2-suhosin
     fi
-    PHP_INI_PATH="/etc/php5/apache2/php.ini"
+    PHP_INI_PATH="/etc/php7.2/apache2/php.ini"
 fi
 # Setup php upload dir
 mkdir -p $PANEL_DATA/temp
@@ -876,7 +876,7 @@ if [[ "$OS" = "CentOs" ]]; then
     # Remove session & php values from apache that cause override
     sed -i "/php_value/d" /etc/httpd/conf.d/php.conf
 elif [[ "$OS" = "Ubuntu" ]]; then
-    sed -i "s|;session.save_path = \"/var/lib/php5\"|session.save_path = \"$PANEL_DATA/sessions\"|" $PHP_INI_PATH
+    sed -i "s|;session.save_path = \"/var/lib/php7.2\"|session.save_path = \"$PANEL_DATA/sessions\"|" $PHP_INI_PATH
 fi
 sed -i "/php_value/d" $PHP_INI_PATH
 echo "session.save_path = $PANEL_DATA/sessions;">> $PHP_INI_PATH
@@ -892,7 +892,7 @@ sed -i "s|expose_php = On|expose_php = Off|" $PHP_INI_PATH
 if [[ "$OS" = "CentOs" || ( "$OS" = "Ubuntu" && "$VER" = "14.04") ]] ; then
     echo -e "\n# Building suhosin"
     if [[ "$OS" = "Ubuntu" ]]; then
-        $PACKAGE_INSTALLER php5-dev
+        $PACKAGE_INSTALLER php7.2-dev
     fi
     SUHOSIN_VERSION="0.9.37.1"
     wget -nv -O suhosin.zip https://github.com/stefanesser/suhosin/archive/$SUHOSIN_VERSION.zip
